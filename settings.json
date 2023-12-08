@@ -1,0 +1,16 @@
+{
+  "Name": "SUGCOFF",
+  "PValueThreshold": 0.05,
+  "PathToExcelFileWithData":"Commodity Futures Historical Data 2023 xlsm",
+
+  "SinglePairMode": true,
+  "FirstAsset": "SUGAR_AlphaVantage",
+  "SecondAsset": "COFFEE_AlphaVantage",
+
+
+  "TestingDataAllocation": 0.6,
+
+
+
+  "StandardDeviationMultiplier": 0.6
+}

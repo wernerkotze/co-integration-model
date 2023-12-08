@@ -1,0 +1,66 @@
+Installation:
+
+1.1 Place "requirements.txt", "cointegration.py, "functions.py", "training_and_testing.py", "settings.json",
+ "excel_regenerator.py" and dataset file ("Commodity Futures Historical Data 2023.xlsm")
+ into one separate folder, let's call it folder "Cointegration"
+
+1.2 Install latest python3 on your computer from https://www.python.org/downloads/
+
+1.3 Copy path to requirements.txt (for example: "/Users/john/python/src/cointegration/requirements.txt")
+ now open app called Terminal (On MacOS) or Console (On Windows) and run following command:
+
+ pip3 install -r /Users/john/python/src/cointegration/requirements.txt
+
+ after this your application should install necessary packages for correct work of this python code.
+ Note: only do it once, you don't need to do steps 1. 2. and 3. more than one time.
+
+
+Settings:
+
+2.1 Open settings.json, there you can change "Name" of a testing configuration, name should be closed in double quotes "".
+ If you will run a test with the same name, make sure you setup another unique name or delete folder with previous results.
+
+2.2 "PValueThreshold" is an important threshold. In hypothesis, if P-Value is less than 0.05, we can reject
+ the null hypothesis and pair might be cointegrated, but with this setting, you can set P-Value threshold.
+ Test will run those pairs of instruments, which are under the setting of "PValueThreshold", keep that in mind.
+
+2.3 "PathToExcelFileWithData" is also going to be used once / twice, you need to copy path to the original dataset, that
+ you provided to me (Commodity Futures Historical Data 2023.xlsm) and paste it there, between "".
+
+
+Datasets:
+
+3.1 Your original dataset was in a very bad state (unordered, missing values, bad shape), that's why I created a script,
+ that restructures data into .csv files which will be located in "datasets" folder (it will be generated automatically).
+ After setting "PathToExcelFileWithData" in settings (step 2.3) you need to copy path to Cointegration folder
+ (for example: "/Users/john/python/src/Cointegration") and open Terminal (MacOS) or Command Prompt (Windows)
+ and run following commands, one after another:
+
+ cd /Users/john/python/src/Cointegration/
+
+ python3 excel_regenerator.py
+
+ After successful execution, you'll find a new folder "datasets" with csv files and their names will be equal to instruments.
+ If in future, you'll want to add more datasets, you won't be able to use excel_regenerator.py,
+ because it is specifically made for (Commodity Futures Historical Data 2023.xlsm). Instead you'll have to create csv files
+ with exactly the same format. Name them as a trading instrument.csv and inside there must be column "Date" and "Close".
+
+3.2 After that you can delete Commodity Futures Historical Data 2023.xlsm, because cointegration test only uses datasets folder
+
+
+Backtesting:
+
+4.1 After creating a dataset folder, it's time to backtest your data, process works like this, you setup "PValueThreshold"
+ and run it, it will create all the results in a shape of pictures sorted by folders in following format:
+ After you run a backtest, you'll see new folder called "Results" + name of backtest (from settings.json), remember, every
+ test must have unique name or you can also delete older test by deleting corresponding folder. Inside of folder with Results
+ you'll find all the data, which is also sorted by folders and separate pictures.
+
+4.2 In order to perform a backtest, copy path to Cointegration folder (for example: /Users/john/python/src/Cointegration)
+ open Terminal (MacOS) or Command Prompt (Windows) and run following commands, one after another:
+
+ cd /Users/john/python/src/Cointegration
+
+ python3 cointegration.py
+
+ after running it, you'll see that program started processing data and generating results in Cointegration folder.
